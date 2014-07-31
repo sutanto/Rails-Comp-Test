@@ -11,26 +11,29 @@ cus2 = Customer.create!(first_name: 'Raj', last_name: 'Jamnis')
 cus3 = Customer.create!(first_name: 'Andrew', last_name: 'Chung')
 cus4 = Customer.create!(first_name: 'Mike', last_name: 'Smith')
 
-successful = { 5 => cus1, 3 => cus2, 1 => cus3, 1 => cus4 }
-successful.each do |num, cus|
+successful = { cus1.id => 5, cus2.id => 3, cus3.id => 1, cus4.id => 1 }
+successful.each do |cus_id, num|
+  cus = Customer.find(cus_id)
   num.times {
     Charge.create!(paid: true, amount: 4900, currency: 'usd',
-      refunded: false, customer_id: cus1.id, disputed: false)
+      refunded: false, customer_id: cus.id, disputed: false)
   }
 end
 
-failed = { 3 => cus3, 2 => cus4 }
-failed.each do |num, cus|
+failed = { cus3.id => 3, cus4.id => 2 }
+failed.each do |cus_id, num|
+  cus = Customer.find(cus_id)
   num.times {
     Charge.create!(paid: false, amount: 4900, currency: 'usd',
-      refunded: false, customer_id: cus1.id, disputed: false)
+      refunded: false, customer_id: cus.id, disputed: false)
   }
 end
 
-disputed = { 3 => cus1, 2 => cus2 }
-disputed.each do |num, cus|
+disputed = { cus1.id => 3, cus2.id => 2 }
+disputed.each do |cus_id, num|
+  cus = Customer.find(cus_id)
   num.times {
     Charge.create!(paid: true, amount: 4900, currency: 'usd',
-      refunded: false, customer_id: cus1.id, disputed: true)
+      refunded: false, customer_id: cus.id, disputed: true)
   }
 end
