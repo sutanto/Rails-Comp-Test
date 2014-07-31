@@ -1,0 +1,26 @@
+<div class="failed charges">
+  <h1>Failed Charges</h1>
+  <ul>
+  <% @failed.each do |charge| %>
+    <%= render 'charge', charge: charge %>
+  <% end %>
+  </ul>
+</div>
+
+<div class="disputed charges">
+  <h1>Disputed Charges</h1>
+  <ul>
+  <% @disputed.each do |charge| %>
+    <%= render 'charge', charge: charge %>
+  <% end %>
+  </ul>
+</div>
+
+<div class="successful charges">
+  <h1>Successful Charges</h1>
+  <ul>
+  <% @successful.each do |charge| %>
+    <%= render 'charge', charge: charge %>
+  <% end %>
+  </ul>
+</div>
