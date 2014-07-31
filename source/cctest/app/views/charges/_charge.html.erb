@@ -1,7 +1,7 @@
 <li>
   <pre>
     Customer Name: <%= charge.customer.name %>
-    Amount: <%= charge.amount %>
+    Amount: <%= format_usd charge.amount %>
     Date: <%= charge.created_at %>
   </pre>
 </li>
